@@ -5,6 +5,7 @@ import HeaderContainer from '../../components/Header'
 import Produtos from '../../components/Produtos'
 import Values from '../../components/Values'
 import { Api } from '../../service/Api'
+import { useNavigate } from 'react-router-dom'
 
 function Bag() {
   const [data, setData] = useState(undefined)
@@ -15,11 +16,16 @@ function Bag() {
     })()
   }, [])
 
+  const navigate = useNavigate()
+  const redirect = () => {
+    navigate('/payment')
+  }
+
   return (
     <Container>
       {typeof data !== 'undefined' && (
         <>
-          <HeaderContainer />
+          <HeaderContainer index={0} />
           <Produtos items={data.items} />
           <Values
             values={{
@@ -29,7 +35,7 @@ function Bag() {
               total: data.total
             }}
           />
-          <Button>
+          <Button type="button" onClick={redirect}>
             <span className="button-text">SEGUIR PARA O PAGAMENTO</span>
           </Button>
         </>
