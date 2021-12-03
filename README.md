@@ -1,3 +1,3 @@
 # TesteCart
 
-Desafio Teste Cart utilizando ReactJS e Styled Components
+Desafio Teste Cart utilizando ReactJS, Styled Components e consumindo API de produtos.
