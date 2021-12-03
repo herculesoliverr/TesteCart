@@ -1,13 +1,11 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 import Bag from '../pages/Bag'
 
+const Routes = () => useRoutes([{ path: '/bag', element: <Bag /> }])
+
 function Routing() {
-  return (
-    <Routes>
-      <Route path="/bag" exect component={Bag} />
-    </Routes>
-  )
+  return <Routes />
 }
 
 export default Routing
