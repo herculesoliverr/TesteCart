@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Container } from '../../styles/global'
+import { Container } from '../../styles/global'
 import HeaderContainer from '../../components/Header'
-import { Pagamentos } from './style'
-import FormCartao from '../../components/FormCartao'
 import { Api } from '../../service/Api'
 import Values from '../../components/Values'
-import { useNavigate } from 'react-router-dom'
+import BuyConfirmation from '../../components/BuyConfirmation'
+import { ProductsConfirmation } from '../../components/ProductsConfirmation'
+import BuyConfirmationStyled from './style'
+import CardInfo from '../../components/CardInfo'
 
-function Payment() {
+function Confirmation() {
   const [data, setData] = useState(undefined)
   useEffect(() => {
     ;(async () => {
@@ -16,18 +17,14 @@ function Payment() {
     })()
   }, [])
 
-  const navigate = useNavigate()
-  const redirect = () => {
-    navigate('/confirmation')
-  }
-
   return (
-    <Container>
+    <Container className="container-flex">
       {typeof data !== 'undefined' && (
         <>
-          <HeaderContainer index={1} />
-          <Pagamentos>CARTÃO DE CRÉDITO</Pagamentos>
-          <FormCartao />
+          <HeaderContainer index={2} />
+          <BuyConfirmation />
+          <CardInfo />
+          <ProductsConfirmation items={data.items} />
           <Values
             values={{
               subTotal: data.subTotal,
@@ -36,13 +33,10 @@ function Payment() {
               total: data.total
             }}
           />
-          <Button type="button" onClick={redirect}>
-            <span className="button-text">FINALIZAR O PEDIDO</span>
-          </Button>
         </>
       )}
     </Container>
   )
 }
 
-export default Payment
+export default Confirmation

@@ -7,7 +7,7 @@ export const Products = styled.span`
   display: inline-block;
   margin: 10px 0px 5px 15px;
 `
-export const ContainerProdutos = styled.section`
+export const ContainerProdutos = styled.div`
   width: 341px;
   background-color: #fff;
   margin: auto;
@@ -22,7 +22,7 @@ export const ContainerProdutos = styled.section`
   align-items: center;
 
   .ContainerItens {
-    height: 90px;
+    height: 70px;
     width: 316px;
     border-radius: 3px;
     margin-bottom: 15px;
@@ -51,14 +51,5 @@ export const ContainerProdutos = styled.section`
     font-size: 13px;
     line-height: 20px;
     padding: 7px;
-  }
-
-  .product-values {
-    display: flex;
-    text-align: right;
-    justify-content: flex-end;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 17px;
   }
 `

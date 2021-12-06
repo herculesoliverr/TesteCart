@@ -34,6 +34,7 @@ export const Container = styled.div`
   box-shadow: 0px 5px 6px 2px #00000020;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
   justify-content: space-between;
 `
 
