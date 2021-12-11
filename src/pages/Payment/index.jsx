@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Button, Container } from '../../styles/global'
 import HeaderContainer from '../../components/Header'
 import { Pagamentos } from './style'
@@ -6,8 +6,10 @@ import FormCartao from '../../components/FormCartao'
 import { Api } from '../../service/Api'
 import Values from '../../components/Values'
 import { useNavigate } from 'react-router-dom'
+import { FormProvider, FormContext } from '../../contexts/FormContext'
 
 function Payment() {
+  const { card } = useContext(FormContext)
   const [data, setData] = useState(undefined)
   useEffect(() => {
     ;(async () => {
@@ -17,17 +19,20 @@ function Payment() {
   }, [])
 
   const navigate = useNavigate()
-  const redirect = () => {
+  const submitForm = () => {
     navigate('/confirmation')
+    console.log(card)
   }
 
   return (
     <Container>
-      {typeof data !== 'undefined' && (
+      {data && (
         <>
           <HeaderContainer index={1} />
-          <Pagamentos>CARTÃO DE CRÉDITO</Pagamentos>
-          <FormCartao />
+          <div className="div-payment">
+            <Pagamentos>CARTÃO DE CRÉDITO</Pagamentos>
+            <FormCartao aoEnviar={aoEnviarForm} />
+          </div>
           <Values
             values={{
               subTotal: data.subTotal,
@@ -36,13 +41,17 @@ function Payment() {
               total: data.total
             }}
           />
-          <Button type="button" onClick={redirect}>
+          <Button type="button" onClick={submitForm}>
             <span className="button-text">FINALIZAR O PEDIDO</span>
           </Button>
         </>
       )}
     </Container>
   )
+}
+
+function aoEnviarForm(dados) {
+  console.log(dados)
 }
 
 export default Payment
